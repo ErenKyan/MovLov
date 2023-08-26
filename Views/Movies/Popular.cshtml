@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Trending Movies</title>
+</head>
+<body>
+    <h1>Trending Movies</h1>
+    <p>Number of results: @Model.results.Count</p>
+
+    @if (Model.results != null && Model.results.Count > 0)
+    {
+        <ul>
+            @foreach (var movie in Model.results)
+            {
+                <li>
+                    <h2>@movie.title</h2>
+                    <p>@movie.overview</p>
+                    @{
+                        string posterUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+                    }
+                    <img src="@posterUrl" width="200" height="300">
+                </li>
+            }
+        </ul>
+
+        <div>
+            @if (Model.page > 1)
+            {
+                <a href="@Url.Action("Index", new { page = Model.page - 1 })">Previous</a>
+            }
+
+            @if (Model.page < Model.total_pages)
+            {
+                <a href="@Url.Action("Index", new { page = Model.page + 1 })">Next</a>
+            }
+        </div>
+
+    }
+    else
+    {
+        <p>No trending movies available.</p>
+    }
+
+</body>
+</html>
