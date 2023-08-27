@@ -1,4 +1,4 @@
 [[redirects]]
 from = "/*"
-to = "index.cshtml"
+to = "Index.cshtml"
 status = 200
